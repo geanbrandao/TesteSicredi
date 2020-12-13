@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motion_splashscreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?splashscreenBackgroundColor"
+    app:layoutDescription="@xml/fragment_splashscreen_scene"
+    tools:context=".SplashscreenFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_title_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/splashscreen_text_title_first"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="?splashscreenTextColor"
+        android:textSize="@dimen/size_extra_large"
+        app:layout_constraintBottom_toTopOf="@+id/text_title_second"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_title_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/splashscreen_text_title_second"
+        android:textAllCaps="true"
+        android:textColor="?splashscreenTextColor"
+        android:textSize="@dimen/size_extra_large"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title_first" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
