@@ -1,6 +1,2 @@
 <resources>
-    <declare-styleable name="SplashscrenAttrs">
-        <attr name="splashscreenBackgroundColor" format="color" />
-        <attr name="splashscreenTextColor" format="color" />
-    </declare-styleable>
 </resources>

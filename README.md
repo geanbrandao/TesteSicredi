@@ -1,8 +1,8 @@
-#Teste sicredi
+# Teste sicredi
 
-- [ ] Add Navigation componet
-- [ ] Add Splashscreen
-- [ ] Add Motion Layout in splashscreen
+- [x] Add Navigation componet
+- [x] Add Splashscreen
+- [x] Add Motion Layout in splashscreen
 - [ ] Add retrofit (min sdk 21) - library
 - [ ] Add RXjava to observe the changes - library
 - [ ] Add viewModel lifecycle - library

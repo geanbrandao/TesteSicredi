@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="size_extra_large">48sp</dimen>
+    <dimen name="size_toolbar">55dp</dimen>
+    <dimen name="size_text_title">16sp</dimen>
+    <dimen name="size_icon_default">24dp</dimen>
+    <dimen name="size_text_default">14sp</dimen>
 </resources>

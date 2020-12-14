@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashscreenFragment"
-        android:name="com.geanbrandao.testesicredi.SplashscreenFragment"
+        android:name="com.geanbrandao.testesicredi.ui.splashscreen.SplashscreenFragment"
         android:label="fragment_splashscreen"
         tools:layout="@layout/fragment_splashscreen" >
         <action
@@ -22,7 +22,21 @@
     </fragment>
     <fragment
         android:id="@+id/eventsFragment"
-        android:name="com.geanbrandao.testesicredi.EventsFragment"
+        android:name="com.geanbrandao.testesicredi.ui.events.EventsFragment"
         android:label="fragment_events"
-        tools:layout="@layout/fragment_events" />
+        tools:layout="@layout/fragment_events" >
+        <action
+            android:id="@+id/action_eventsFragment_to_detailsEventFragment"
+            app:destination="@id/detailsEventFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/eventsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsEventFragment"
+        android:name="com.geanbrandao.testesicredi.ui.details.DetailsEventFragment"
+        android:label="fragment_details_event"
+        tools:layout="@layout/fragment_details_event" />
 </navigation>

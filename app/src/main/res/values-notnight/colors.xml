@@ -22,6 +22,4 @@
     <color name="color_window_background">#FFFFFFFF</color>
     <color name="color_window_text">#FF000000</color>
     <color name="color_window_icon">#000000</color>
-
-    <color name="color_window_divider">#AFAFAF</color>
 </resources>

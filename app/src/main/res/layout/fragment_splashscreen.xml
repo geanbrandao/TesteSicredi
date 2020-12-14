@@ -5,9 +5,9 @@
     android:id="@+id/motion_splashscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?splashscreenBackgroundColor"
+    android:background="@color/color_background_splashscreen"
     app:layoutDescription="@xml/fragment_splashscreen_scene"
-    tools:context=".SplashscreenFragment">
+    tools:context=".ui.splashscreen.SplashscreenFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_title_first"
@@ -17,7 +17,7 @@
         android:text="@string/splashscreen_text_title_first"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="?splashscreenTextColor"
+        android:textColor="@color/color_text_splashscreen"
         android:textSize="@dimen/size_extra_large"
         app:layout_constraintBottom_toTopOf="@+id/text_title_second"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
         android:fontFamily="sans-serif-black"
         android:text="@string/splashscreen_text_title_second"
         android:textAllCaps="true"
-        android:textColor="?splashscreenTextColor"
+        android:textColor="@color/color_text_splashscreen"
         android:textSize="@dimen/size_extra_large"
         app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
