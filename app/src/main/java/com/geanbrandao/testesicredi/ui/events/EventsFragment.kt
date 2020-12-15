@@ -60,6 +60,10 @@ class EventsFragment : Fragment() {
         binding.swipeRefresh.setOnRefreshListener {
             binding.swipeRefresh.isRefreshing = false
         }
+
+        binding.imageConfig.setOnClickListener {
+            Navigation.findNavController(binding.root).navigate(R.id.action_eventsFragment_to_preferencesFragment)
+        }
     }
 
     private fun setupToolbar() {

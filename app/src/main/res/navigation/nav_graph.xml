@@ -45,6 +45,9 @@
                 android:defaultValue="@null" />
 
         </action>
+        <action
+            android:id="@+id/action_eventsFragment_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
 
     </fragment>
 
@@ -61,5 +64,10 @@
             android:defaultValue="@null" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="com.geanbrandao.testesicredi.ui.preferences.PreferencesFragment"
+        android:label="PreferencesFragment" />
 
 </navigation>

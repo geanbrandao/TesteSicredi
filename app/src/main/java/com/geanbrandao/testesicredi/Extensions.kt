@@ -8,6 +8,8 @@ import android.graphics.Rect
 import android.util.TypedValue
 import android.view.TouchDelegate
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -65,4 +67,8 @@ fun View.increaseHitArea(dp: Float) {
         rect.right += increasedArea
         parent.touchDelegate = TouchDelegate(rect, this)
     }
+}
+
+fun AppCompatActivity.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

@@ -19,4 +19,23 @@
 
 <!--    Error messages -->
     <string name="text_error_message_error_find_address">Erro ao encontrar endereço</string>
+    <string name="preference_text_title">Selecione o tema</string>
+
+
+    <string name="preference_theme_system_default">Padrão do sistema</string>
+    <string name="preference_theme_light">Claro</string>
+    <string name="preference_theme_dark">Escuro</string>
+    <string name="preference_theme_key">THEME_PREFERENCE</string>
+
+    <string-array name="preference_theme_entries">
+        <item>@string/preference_theme_system_default</item>
+        <item>@string/preference_theme_light</item>
+        <item>@string/preference_theme_dark</item>
+    </string-array>
+    <string-array name="preference_theme_values">
+        <item>auto</item>
+        <item>light</item>
+        <item>dak</item>
+    </string-array>
+
 </resources>
