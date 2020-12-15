@@ -11,6 +11,7 @@ import com.geanbrandao.testesicredi.R
 import com.geanbrandao.testesicredi.data.EventsResponse
 import com.geanbrandao.testesicredi.model.Event
 import com.geanbrandao.testesicredi.showToast
+import com.geanbrandao.testesicredi.ui.preferences.PreferencesFragment
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -25,12 +26,19 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val theme = prefs.getString(getString(R.string.preference_theme_key), "light")
+        val theme = prefs.getString(getString(R.string.preference_theme_key), "auto")
+        showToast("theme eh - $theme")
         when (theme) {
-            "light" -> AppCompatDelegate.MODE_NIGHT_NO
-            "dark" -> AppCompatDelegate.MODE_NIGHT_YES
-            "auto" -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            else -> AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+            "auto" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+            "light" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            "dark" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_UNSPECIFIED)
 
         }
 
@@ -39,9 +47,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == getString(R.string.preference_theme_key)) {
-            showToast("AQUIIIIIIII")
             recreate()
-
         }
     }
 

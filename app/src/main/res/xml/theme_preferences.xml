@@ -9,6 +9,6 @@
         app:key="@string/preference_theme_key"
         app:title="@string/preference_text_title"
         app:useSimpleSummaryProvider="true"
-        android:defaultValue="light" />
+        android:defaultValue="auto" />
 
 </PreferenceScreen>

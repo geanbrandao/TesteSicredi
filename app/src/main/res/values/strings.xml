@@ -35,7 +35,7 @@
     <string-array name="preference_theme_values">
         <item>auto</item>
         <item>light</item>
-        <item>dak</item>
+        <item>dark</item>
     </string-array>
 
 </resources>

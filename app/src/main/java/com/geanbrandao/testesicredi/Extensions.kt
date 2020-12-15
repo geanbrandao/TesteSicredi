@@ -5,12 +5,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.TouchDelegate
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.geanbrandao.testesicredi.data.EventsResponse
@@ -34,11 +36,15 @@ fun Long.convertoToDateString(): String {
 }
 
 fun AppCompatImageView.loadImage(url: String) {
+
+    val iconError = this.context.getIcon(R.drawable.ic_broken_image, R.color.color_window_icon)
+    val iconPlaceholder = this.context.getIcon(R.drawable.ic_image, R.color.color_window_icon)
+
     Glide.with(this.context)
         .load(url)
         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-        .placeholder(R.drawable.ic_image)
-        .error(R.drawable.ic_broken_image)
+        .placeholder(iconPlaceholder)
+        .error(iconError)
         .into(this)
 }
 
@@ -71,4 +77,17 @@ fun View.increaseHitArea(dp: Float) {
 
 fun AppCompatActivity.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.getIcon(iconId: Int, colorId: Int): Drawable? {
+    val icon = ContextCompat.getDrawable(this, iconId)
+    icon?.let {
+        val h: Int = it.intrinsicHeight
+        val w: Int = it.intrinsicWidth
+        it.setBounds(0, 0, w, h)
+        it.setTint(ContextCompat.getColor(this, colorId))
+        return icon
+    } ?: run {
+        return null
+    }
 }

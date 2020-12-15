@@ -1,5 +1,6 @@
 package com.geanbrandao.testesicredi.ui.events
 
+import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
@@ -30,7 +31,7 @@ class EventsFragment : Fragment() {
     private val viewModel: EventsViewModel by viewModel()
 
     private val adapter: EventsAdapter by inject {
-        parametersOf(onClick)
+        parametersOf(requireContext(), onClick)
     }
 
     val onClick: (item: Event) -> Unit = { item ->
@@ -62,7 +63,8 @@ class EventsFragment : Fragment() {
         }
 
         binding.imageConfig.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_eventsFragment_to_preferencesFragment)
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_eventsFragment_to_preferencesFragment)
         }
     }
 

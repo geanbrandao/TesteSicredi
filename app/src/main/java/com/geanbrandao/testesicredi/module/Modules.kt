@@ -1,5 +1,6 @@
 package com.geanbrandao.testesicredi.module
 
+import android.content.Context
 import com.geanbrandao.testesicredi.model.Event
 import com.geanbrandao.testesicredi.repositories.EventsRepository
 import com.geanbrandao.testesicredi.repositories.EventsRepositoryImpl
@@ -19,7 +20,8 @@ val repositoryModule = module {
 }
 
 val adapterModule = module {
-    factory { (onClick: (event: Event) -> Unit) ->
-        EventsAdapter(context = get(), onClick = onClick)
+    factory { (context: Context, onClick: (event: Event) -> Unit) ->
+        EventsAdapter(context = context, onClick = onClick)
     }
+
 }
