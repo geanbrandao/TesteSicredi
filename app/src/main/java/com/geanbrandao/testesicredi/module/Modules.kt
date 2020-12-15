@@ -28,6 +28,6 @@ val adapterModule = module {
 }
 val networkModule = module {
     single<ApiService> {
-        RetrofitInitializer().createService()
+        RetrofitInitializer(get()).createService()
     }
 }

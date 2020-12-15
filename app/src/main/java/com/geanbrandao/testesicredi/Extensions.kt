@@ -8,6 +8,9 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.util.TypedValue
 import android.view.TouchDelegate
 import android.view.View
@@ -24,6 +27,7 @@ import com.geanbrandao.testesicredi.databinding.CustomErrorDialogBinding
 import com.geanbrandao.testesicredi.network.RetrofitInitializer
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
 import okhttp3.ResponseBody
+import org.koin.android.ext.android.inject
 import retrofit2.Converter
 import timber.log.Timber
 import java.net.ConnectException
@@ -126,6 +130,7 @@ fun Activity.showDialogError(message: String): AlertDialog {
 
 fun Fragment.globalExceptionHandle(error: Throwable): AlertDialog {
     val tag = this::class.java.simpleName
+    val retrofitInitializer: RetrofitInitializer by inject()
     Timber.tag(tag).e(error)
     if (error is HttpException) {
         if (error.code() > 499) {
@@ -137,7 +142,7 @@ fun Fragment.globalExceptionHandle(error: Throwable): AlertDialog {
                 }
                 val body = error.response().errorBody()
                 val errorConverter: Converter<ResponseBody, ErrorResponse> =
-                    RetrofitInitializer().retrofit.responseBodyConverter(
+                    retrofitInitializer.retrofit.responseBodyConverter(
                         ErrorResponse::class.java,
                         arrayOf()
                     )
@@ -156,4 +161,30 @@ fun Fragment.globalExceptionHandle(error: Throwable): AlertDialog {
     }
 
     return this.requireActivity().showDialogError(getString(R.string.errors_generic))
+}
+
+fun Context.isNetworkAvailable(): Boolean {
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            when {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                    return true
+                }
+            }
+        }
+    } else {
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+            return true
+        }
+    }
+    return false
 }

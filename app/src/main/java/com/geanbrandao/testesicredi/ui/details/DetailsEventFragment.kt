@@ -13,6 +13,7 @@ import com.geanbrandao.testesicredi.*
 import com.geanbrandao.testesicredi.databinding.FragmentDetailsEventBinding
 import com.geanbrandao.testesicredi.model.Event
 import com.geanbrandao.testesicredi.ui.events.EventsViewModel
+import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -30,6 +31,8 @@ class DetailsEventFragment : Fragment() {
     private val args: DetailsEventFragmentArgs by navArgs()
 
     private val viewModel: DetailsEventViewModel by viewModel()
+
+    private var disposable: Disposable? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +68,7 @@ class DetailsEventFragment : Fragment() {
     private fun getAddress() {
         val eventArg: Event? = args.keyEventArg
         eventArg?.let { event ->
-            val disposable = viewModel.getAddress(event.latitude, event.longitude, requireContext())
+            disposable = viewModel.getAddress(event.latitude, event.longitude, requireContext())
                 .subscribeBy(
                     onError = {
                         Timber.e(it)
@@ -92,5 +95,9 @@ class DetailsEventFragment : Fragment() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        disposable?.dispose()
+    }
 
 }
