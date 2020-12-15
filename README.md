@@ -15,3 +15,4 @@
 - [x] Create details event screen
 - [x] Configure args insede navigation graph
 - [ ] Dipose de disposable on onStop
+- [ ] Make sure the navigation componet handle the recreate event on activity on lower SDK
