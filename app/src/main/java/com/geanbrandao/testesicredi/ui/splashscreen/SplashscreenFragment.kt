@@ -1,4 +1,4 @@
-package com.geanbrandao.testesicredi
+package com.geanbrandao.testesicredi.ui.splashscreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.navigation.Navigation
+import com.geanbrandao.testesicredi.R
 import com.geanbrandao.testesicredi.databinding.FragmentSplashscreenBinding
 
 

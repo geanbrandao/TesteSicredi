@@ -1,11 +1,41 @@
 <resources>
     <string name="app_name">Teste Sicredi</string>
-    <string name="title_activity_splashscreen">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 
+<!--    Splashscreen-->
     <string name="splashscreen_text_title_first">Teste</string>
     <string name="splashscreen_text_title_second">Sicredi</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+<!--    Events Fragment-->
+    <string name="events_fragment_text_title_screen">Eventos</string>
+
+<!--    Details Fragment-->
+    <string name="details_fragment_text_title_screen">Sobre o evento</string>
+    <string name="details_fragment_text_title_localization">Localização</string>
+    <string name="details_fragment_text_address">Endereço: %s</string>
+    <string name="details_fragment_text_price">Preço: %s</string>
+    <string name="details_fragment_text_date">Data: %s</string>
+    <string name="details_event_fragment_text_button_check_in">Check-in</string>
+    <string name="details_event_fragment_text_button_share">Compartilhar</string>
+
+<!--    Error messages -->
+    <string name="text_error_message_error_find_address">Erro ao encontrar endereço</string>
+    <string name="preference_text_title">Selecione o tema</string>
+
+
+    <string name="preference_theme_system_default">Padrão do sistema</string>
+    <string name="preference_theme_light">Claro</string>
+    <string name="preference_theme_dark">Escuro</string>
+    <string name="preference_theme_key">THEME_PREFERENCE</string>
+
+    <string-array name="preference_theme_entries">
+        <item>@string/preference_theme_system_default</item>
+        <item>@string/preference_theme_light</item>
+        <item>@string/preference_theme_dark</item>
+    </string-array>
+    <string-array name="preference_theme_values">
+        <item>auto</item>
+        <item>light</item>
+        <item>dak</item>
+    </string-array>
+
 </resources>

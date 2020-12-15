@@ -1,10 +1,24 @@
 <resources>
-    <style name="Widget.Theme.TesteSicredi.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/black_overlay</item>
+    <style name="text_window_title">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/color_window_text</item>
+        <item name="android:textSize">@dimen/size_text_title</item>
     </style>
 
-    <style name="Widget.Theme.TesteSicredi.ButtonBar.Fullscreen" parent="">
-        <item name="android:background">@color/black_overlay</item>
-        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    <style name="text_window_small">
+        <item name="android:alpha">0.8</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/color_window_text</item>
+        <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="text_window_default">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/color_window_text</item>
+        <item name="android:textSize">@dimen/size_text_default</item>
+    </style>
+
 </resources>

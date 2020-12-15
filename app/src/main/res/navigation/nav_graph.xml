@@ -7,9 +7,10 @@
 
     <fragment
         android:id="@+id/splashscreenFragment"
-        android:name="com.geanbrandao.testesicredi.SplashscreenFragment"
+        android:name="com.geanbrandao.testesicredi.ui.splashscreen.SplashscreenFragment"
         android:label="fragment_splashscreen"
         tools:layout="@layout/fragment_splashscreen" >
+
         <action
             android:id="@+id/action_splashscreenFragment_to_eventsFragment"
             app:destination="@id/eventsFragment"
@@ -19,10 +20,54 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/splashscreenFragment"
             app:popUpToInclusive="true" />
+
     </fragment>
+
     <fragment
         android:id="@+id/eventsFragment"
-        android:name="com.geanbrandao.testesicredi.EventsFragment"
+        android:name="com.geanbrandao.testesicredi.ui.events.EventsFragment"
         android:label="fragment_events"
-        tools:layout="@layout/fragment_events" />
+        tools:layout="@layout/fragment_events" >
+
+        <action
+            android:id="@+id/action_eventsFragment_to_detailsEventFragment"
+            app:destination="@id/detailsEventFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/eventsFragment">
+
+            <argument
+                android:name="key_event_arg"
+                app:argType="com.geanbrandao.testesicredi.model.Event"
+                app:nullable="true"
+                android:defaultValue="@null" />
+
+        </action>
+        <action
+            android:id="@+id/action_eventsFragment_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsEventFragment"
+        android:name="com.geanbrandao.testesicredi.ui.details.DetailsEventFragment"
+        android:label="fragment_details_event"
+        tools:layout="@layout/fragment_details_event">
+
+        <argument
+            android:name="key_event_arg"
+            app:argType="com.geanbrandao.testesicredi.model.Event"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="com.geanbrandao.testesicredi.ui.preferences.PreferencesFragment"
+        android:label="PreferencesFragment" />
+
 </navigation>
