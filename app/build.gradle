@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.geanbrandao.testesicredi"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 3
         versionName "0.0.2"
