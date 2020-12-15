@@ -48,36 +48,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:fontFamily="sans-serif-medium"
                         android:maxLines="3"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/color_window_text"
-                        android:textSize="@dimen/size_text_title"
-                        tools:text="Event title" />
+                        tools:text="Event title"
+                        style="@style/text_window_title" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/color_window_text"
-                        android:textSize="@dimen/size_text_default"
                         android:visibility="gone"
-                        tools:text="description" />
+                        tools:text="description"
+                        style="@style/text_window_default" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:alpha="0.8"
-                        android:fontFamily="sans-serif-light"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/color_window_text"
-                        android:textSize="12sp"
-                        tools:text="01/01/2001" />
+                        tools:text="01/01/2001"
+                        style="@style/text_window_small" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -1,6 +1,7 @@
 package com.geanbrandao.testesicredi.model
 
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 class Event(
@@ -13,7 +14,7 @@ class Event(
     val price: Float,
     val date: Long,
 //    val people: ArrayList<People> = arrayListOf()
-) {
+): Serializable {
     override fun toString(): String {
         return "$id, $title, $description, $image, $latitude, $longitude, $price, $date"
     }

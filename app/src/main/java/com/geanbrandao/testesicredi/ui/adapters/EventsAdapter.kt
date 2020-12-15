@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.geanbrandao.testesicredi.R
-import com.geanbrandao.testesicredi.convertToDate
 import com.geanbrandao.testesicredi.convertoToDateString
 import com.geanbrandao.testesicredi.databinding.ItemEventBinding
 import com.geanbrandao.testesicredi.loadImage

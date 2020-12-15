@@ -1,5 +1,7 @@
 package com.geanbrandao.testesicredi.ui.events
 
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -53,6 +56,10 @@ class EventsFragment : Fragment() {
     private fun createListeners() {
         setupToolbar()
         getEvents()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+        }
     }
 
     private fun setupToolbar() {
@@ -63,7 +70,7 @@ class EventsFragment : Fragment() {
     private fun getEvents() {
         val disposable = viewModel.getEvents(requireContext()).subscribeBy(
             onError = {
-                  Timber.e(it)
+                Timber.e(it)
                 // TODO handle with api exeption
             },
             onSuccess = {
@@ -74,10 +81,11 @@ class EventsFragment : Fragment() {
     }
 
     private fun itemClicked(item: Event) {
-        goNext()
+        goNext(item)
     }
 
-    private fun goNext() {
-        Navigation.findNavController(binding.root).navigate(R.id.action_eventsFragment_to_detailsEventFragment)
+    private fun goNext(item: Event) {
+        val action = EventsFragmentDirections.actionEventsFragmentToDetailsEventFragment(item)
+        Navigation.findNavController(binding.root).navigate(action)
     }
 }

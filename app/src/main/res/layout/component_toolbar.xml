@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/size_toolbar"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/color_background_toolbar">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
         android:textAlignment="center"
         android:textColor="@color/color_text_toolbar"
         android:textSize="@dimen/size_text_title"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:ellipsize="end"
-        android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Text title" />
 
@@ -30,9 +28,9 @@
         android:layout_height="@dimen/size_icon_default"
         android:layout_marginStart="16dp"
         android:src="@drawable/ic_arrow_back"
-        app:tint="@color/color_icon_toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/color_icon_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

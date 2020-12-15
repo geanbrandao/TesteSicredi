@@ -3,6 +3,10 @@ package com.geanbrandao.testesicredi
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Rect
+import android.util.TypedValue
+import android.view.TouchDelegate
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
@@ -20,14 +24,9 @@ fun Activity.goToActivity(activityClass: Class<*>) {
     startActivity(Intent(this, activityClass))
 }
 
-fun Long.convertToDate(): String {
-    val date = Date(this)
-    val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-    return format.format(date)
-}
-
 fun Long.convertoToDateString(): String {
     val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+    sdf.timeZone = TimeZone.getTimeZone("UTC+3")
     val date = Date(this * 1000L)
     return sdf.format(date)
 }
@@ -47,4 +46,23 @@ fun View.hide() {
 
 fun View.show() {
     this.visibility = View.VISIBLE
+}
+
+fun View.increaseHitArea(dp: Float) {
+    // increase the hit area
+    val increasedArea = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        dp,
+        Resources.getSystem().displayMetrics
+    ).toInt()
+    val parent = parent as View
+    parent.post {
+        val rect = Rect()
+        getHitRect(rect)
+        rect.top -= increasedArea
+        rect.left -= increasedArea
+        rect.bottom += increasedArea
+        rect.right += increasedArea
+        parent.touchDelegate = TouchDelegate(rect, this)
+    }
 }

@@ -13,6 +13,14 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
 
+    <color name="color_primary">#0d47a1</color>
+    <color name="color_primary_light">#5472d3</color>
+    <color name="color_primary_dark">#002171</color>
+    <color name="color_button_text">#ffffff</color>
+
+    <color name="color_button_start">#5472d3</color>
+    <color name="color_button_end">#002171</color>
+
     <color name="color_background_splashscreen">#00B8D4</color>
     <color name="color_text_splashscreen">#E5FBFF</color>
     <color name="color_background_toolbar">#FF03DAC5</color>
