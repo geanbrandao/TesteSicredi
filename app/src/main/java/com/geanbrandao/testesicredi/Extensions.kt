@@ -4,23 +4,30 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
+import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.TouchDelegate
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.geanbrandao.testesicredi.data.EventsResponse
-import com.geanbrandao.testesicredi.model.Event
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.geanbrandao.testesicredi.data.ErrorResponse
+import com.geanbrandao.testesicredi.databinding.CustomErrorDialogBinding
+import com.geanbrandao.testesicredi.network.RetrofitInitializer
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
+import okhttp3.ResponseBody
+import retrofit2.Converter
+import timber.log.Timber
+import java.net.ConnectException
+import java.net.UnknownHostException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -90,4 +97,63 @@ fun Context.getIcon(iconId: Int, colorId: Int): Drawable? {
     } ?: run {
         return null
     }
+}
+
+// dialog de erro comum
+fun Activity.showDialogError(message: String): AlertDialog {
+    val binding = CustomErrorDialogBinding.inflate(this.layoutInflater)
+    val builder = AlertDialog.Builder(this)
+    builder.setView(binding.root)
+    val alertDialog = builder.create()
+
+    if (message.isNotEmpty()) {
+        binding.text1.text = message
+    }
+
+    binding.okBtn.setOnClickListener {
+        alertDialog.dismiss()
+    }
+
+    alertDialog.setCanceledOnTouchOutside(false)
+    alertDialog.setCancelable(false)
+
+    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+    alertDialog.show()
+
+    return alertDialog
+}
+
+fun Fragment.globalExceptionHandle(error: Throwable): AlertDialog {
+    val tag = this::class.java.simpleName
+    Timber.tag(tag).e(error)
+    if (error is HttpException) {
+        if (error.code() > 499) {
+            return this.requireActivity().showDialogError("Server error")
+        } else {
+            if (error.code() in 400..499) {
+                if (error.code() == 401) {
+                    return this.requireActivity().showDialogError("Sessão expirada")
+                }
+                val body = error.response().errorBody()
+                val errorConverter: Converter<ResponseBody, ErrorResponse> =
+                    RetrofitInitializer().retrofit.responseBodyConverter(
+                        ErrorResponse::class.java,
+                        arrayOf()
+                    )
+                body?.let {
+                    val converted = errorConverter.convert(body)
+                    return this.requireActivity().showDialogError(converted.error)
+                } ?: run {
+                    return this.requireActivity().showDialogError(getString(R.string.errors_generic))
+                }
+            }
+        }
+    }
+
+    if (error is UnknownHostException || error is ConnectException) {
+        return this.requireActivity().showDialogError(getString(R.string.errors_no_connection))
+    }
+
+    return this.requireActivity().showDialogError(getString(R.string.errors_generic))
 }

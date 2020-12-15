@@ -4,6 +4,7 @@ import android.content.Context
 import com.geanbrandao.testesicredi.R
 import com.geanbrandao.testesicredi.data.EventsResponse
 import com.geanbrandao.testesicredi.model.Event
+import com.geanbrandao.testesicredi.network.ApiService
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -12,12 +13,18 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class EventsRepositoryImpl: EventsRepository {
+class EventsRepositoryImpl(val api: ApiService): EventsRepository {
     override fun getEvents(context: Context): Single<ArrayList<Event>> {
+        return api.getEvents()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun mockGetEvents(context: Context): Single<ArrayList<Event>> {
         return Single.just(
             getInfoJson(context)?.let {
                 it.toCollection(arrayListOf())
-            }?: run {
+            } ?: run {
                 arrayListOf()
             })
             .subscribeOn(Schedulers.io())

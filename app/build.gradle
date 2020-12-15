@@ -88,6 +88,18 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
+    // retrofit
+    def retrofitRxJavaVersion = '1.0.0'
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofitRxJavaVersion"
+
+    def rxBidingVersion = '2.0.0'
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rxBidingVersion"
+
+    def retrofitVersion = '2.3.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
