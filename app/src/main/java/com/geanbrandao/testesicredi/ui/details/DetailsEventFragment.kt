@@ -17,6 +17,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
+import java.lang.StringBuilder
 import java.util.*
 
 /**
@@ -52,6 +53,19 @@ class DetailsEventFragment : Fragment() {
         setupToolbar()
         setFields()
         getAddress()
+
+        binding.buttonShare.setOnClickListener {
+            val event: Event? = args.keyEventArg
+
+            val builder = StringBuilder()
+            builder.append(event?.title)
+            builder.append(" - ")
+            builder.append(getString(R.string.details_fragment_text_date, event?.date?.convertoToDateString()))
+            builder.append(" - ")
+            builder.append(getString(R.string.details_fragment_text_price, "%.2f".format(event?.price)))
+
+            requireContext().openShareSheet(builder.toString())
+        }
     }
 
     private fun setFields() {

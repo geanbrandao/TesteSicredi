@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -187,4 +188,18 @@ fun Context.isNetworkAvailable(): Boolean {
         }
     }
     return false
+}
+
+fun Context.openShareSheet(message: String) {
+    val sendIntent: Intent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(
+            Intent.EXTRA_TEXT,
+            message
+        )
+        type = "text/plain"
+    }
+    val shareIntent = Intent.createChooser(sendIntent, "Compartilhar via")
+    shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    startActivity(this, shareIntent, null)
 }
