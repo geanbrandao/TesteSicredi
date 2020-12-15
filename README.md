@@ -16,3 +16,4 @@
 - [x] Configure args insede navigation graph
 - [ ] Dipose de disposable on onStop
 - [ ] Make sure the navigation componet handle the recreate event on activity on lower SDK
+- [x] I have to upgrade the min SDK to 21, than i can use better tools
