@@ -1,5 +1,6 @@
 package com.geanbrandao.testesicredi.ui.events
 
+import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
@@ -10,9 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.geanbrandao.testesicredi.R
 import com.geanbrandao.testesicredi.databinding.FragmentEventsBinding
+import com.geanbrandao.testesicredi.globalExceptionHandle
 import com.geanbrandao.testesicredi.hide
 import com.geanbrandao.testesicredi.model.Event
 import com.geanbrandao.testesicredi.ui.adapters.EventsAdapter
+import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -29,8 +32,10 @@ class EventsFragment : Fragment() {
 
     private val viewModel: EventsViewModel by viewModel()
 
+    private var disposable: Disposable? = null
+
     private val adapter: EventsAdapter by inject {
-        parametersOf(onClick)
+        parametersOf(requireContext(), onClick)
     }
 
     val onClick: (item: Event) -> Unit = { item ->
@@ -62,7 +67,8 @@ class EventsFragment : Fragment() {
         }
 
         binding.imageConfig.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_eventsFragment_to_preferencesFragment)
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_eventsFragment_to_preferencesFragment)
         }
     }
 
@@ -72,10 +78,11 @@ class EventsFragment : Fragment() {
     }
 
     private fun getEvents() {
-        val disposable = viewModel.getEvents(requireContext()).subscribeBy(
+        disposable = viewModel.getEvents(requireContext()).subscribeBy(
             onError = {
                 Timber.e(it)
-                // TODO handle with api exeption
+                globalExceptionHandle(it)
+
             },
             onSuccess = {
                 // fill the adapter
@@ -91,5 +98,10 @@ class EventsFragment : Fragment() {
     private fun goNext(item: Event) {
         val action = EventsFragmentDirections.actionEventsFragmentToDetailsEventFragment(item)
         Navigation.findNavController(binding.root).navigate(action)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        disposable?.dispose()
     }
 }

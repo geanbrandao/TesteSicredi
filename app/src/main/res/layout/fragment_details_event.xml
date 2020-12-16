@@ -39,14 +39,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_title_event"
+                style="@style/text_window_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-medium"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:textColor="@color/color_window_text"
-                android:textSize="@dimen/size_text_title"
                 app:layout_constraintTop_toBottomOf="@+id/image_event"
                 tools:layout_editor_absoluteX="16dp"
                 tools:text="Title event" />

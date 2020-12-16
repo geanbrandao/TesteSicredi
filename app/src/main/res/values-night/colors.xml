@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#0d47a1</color>
-    <color name="color_primary_light">#5472d3</color>
-    <color name="color_primary_dark">#002171</color>
+    <color name="color_primary">#1a237e</color>
+    <color name="color_primary_light">#534bae</color>
+    <color name="color_primary_dark">#000051</color>
 
     <color name="color_button_text">#ffffff</color>
 
-    <color name="color_button_start">#5472d3</color>
-    <color name="color_button_end">#002171</color>
+    <color name="color_button_start">#534bae</color>
+    <color name="color_button_end">#000051</color>
 
-    <color name="color_background_splashscreen">#002171</color>
+    <color name="color_background_splashscreen">#000051</color>
     <color name="color_text_splashscreen">#ffffff</color>
 
-    <color name="color_background_toolbar">#5472d3</color>
-    <color name="color_text_toolbar">#FFFFFFFF</color>
-    <color name="color_icon_toolbar">#FFFFFFFF</color>
+    <color name="color_background_toolbar">#534bae</color>
+    <color name="color_text_toolbar">#FFFFFF</color>
+    <color name="color_icon_toolbar">#FFFFFF</color>
 
-    <color name="color_window_background">#FFFFFFFF</color>
-    <color name="color_window_text">#FF000000</color>
-    <color name="color_window_icon">#000000</color>
+    <color name="color_window_background">#212121</color>
+    <color name="color_window_text">#FFFFFF</color>
+    <color name="color_window_icon">#FFFFFF</color>
 
-    <color name="color_window_divider">#AFAFAF</color>
+    <color name="color_window_divider">#C3C3C3</color>
 </resources>

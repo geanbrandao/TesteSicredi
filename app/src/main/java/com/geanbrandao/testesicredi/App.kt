@@ -2,6 +2,7 @@ package com.geanbrandao.testesicredi
 
 import androidx.multidex.MultiDexApplication
 import com.geanbrandao.testesicredi.module.adapterModule
+import com.geanbrandao.testesicredi.module.networkModule
 import com.geanbrandao.testesicredi.module.repositoryModule
 import com.geanbrandao.testesicredi.module.viewModelModule
 import com.microsoft.appcenter.AppCenter
@@ -25,7 +26,7 @@ class App : MultiDexApplication() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(viewModelModule, repositoryModule, adapterModule))
+            modules(listOf(viewModelModule, repositoryModule, adapterModule, networkModule))
         }
 
         if (BuildConfig.DEBUG) {
