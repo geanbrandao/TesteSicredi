@@ -1,5 +1,7 @@
 package com.geanbrandao.testesicredi.ui.details
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
@@ -7,9 +9,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.widget.doOnTextChanged
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.geanbrandao.testesicredi.*
+import com.geanbrandao.testesicredi.data.CheckinRequest
+import com.geanbrandao.testesicredi.databinding.DialogCheckinBinding
 import com.geanbrandao.testesicredi.databinding.FragmentDetailsEventBinding
 import com.geanbrandao.testesicredi.model.Event
 import com.geanbrandao.testesicredi.ui.events.EventsViewModel
@@ -34,6 +41,7 @@ class DetailsEventFragment : Fragment() {
     private val viewModel: DetailsEventViewModel by viewModel()
 
     private var disposable: Disposable? = null
+    private var disposablePost: Disposable? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +74,39 @@ class DetailsEventFragment : Fragment() {
 
             requireContext().openShareSheet(builder.toString())
         }
+
+        binding.buttonCheckin.setOnClickListener {
+            openDialogCheckin()
+        }
     }
+
+    private fun openDialogCheckin() {
+        val binding = DialogCheckinBinding.inflate(this.layoutInflater)
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setView(binding.root)
+
+        val alertDialog = builder.create()
+
+        binding.buttonOk.setOnClickListener {
+            binding.progressBar.show()
+            val event: Event? = args.keyEventArg
+            val data = CheckinRequest(event!!.id, binding.inputName.text.toString(), binding.inputEmail.text.toString())
+            disposablePost = viewModel.postCheckIn(data).subscribeBy(
+                onError = {
+                    globalExceptionHandle(it)
+                    binding.progressBar.hide()
+                },
+                onComplete = {
+                    binding.progressBar.hide()
+                    alertDialog.dismiss()
+                }
+            )
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+    }
+
 
     private fun setFields() {
         val eventArg: Event? = args.keyEventArg
@@ -112,6 +152,7 @@ class DetailsEventFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         disposable?.dispose()
+        disposablePost?.dispose()
     }
 
 }

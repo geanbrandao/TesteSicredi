@@ -5,7 +5,9 @@ import android.location.Address
 import android.location.Geocoder
 import androidx.lifecycle.ViewModel
 import com.geanbrandao.testesicredi.R
+import com.geanbrandao.testesicredi.data.CheckinRequest
 import com.geanbrandao.testesicredi.repositories.EventsRepository
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,6 +35,10 @@ class DetailsEventViewModel(private val mRepository: EventsRepository) : ViewMod
             }
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun postCheckIn(data: CheckinRequest): Completable {
+        return mRepository.postCheckIn(data)
     }
 
     fun getAddress(lat: Double, lng: Double, context: Context): Single<String> {

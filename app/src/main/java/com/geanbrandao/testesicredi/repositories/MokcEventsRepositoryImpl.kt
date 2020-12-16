@@ -2,6 +2,7 @@ package com.geanbrandao.testesicredi.repositories
 
 import android.content.Context
 import com.geanbrandao.testesicredi.R
+import com.geanbrandao.testesicredi.data.CheckinRequest
 import com.geanbrandao.testesicredi.data.EventsResponse
 import com.geanbrandao.testesicredi.model.Event
 import com.geanbrandao.testesicredi.network.ApiService
@@ -9,11 +10,12 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MokcEventsRepositoryImpl(val api: ApiService): EventsRepository {
+class MokcEventsRepositoryImpl(): EventsRepository {
 
     override fun getEvents(context: Context): Single<ArrayList<Event>> {
         return Single.just(
@@ -24,6 +26,10 @@ class MokcEventsRepositoryImpl(val api: ApiService): EventsRepository {
             })
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun postCheckIn(data: CheckinRequest): Completable {
+        return Completable.complete()
     }
 
     fun getInfoJson(context: Context): List<Event>? {

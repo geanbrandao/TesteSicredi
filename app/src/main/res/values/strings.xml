@@ -34,6 +34,9 @@
 
 
     <string name="buttons_default_ok">OK</string>
+    <string name="dialog_checkin_text_title">Fazer check-in</string>
+    <string name="dialog_checkin_input_hint_name">Name</string>
+    <string name="dialog_checkin_input_hint_email">E-mail</string>
 
     <string-array name="preference_theme_entries">
         <item>@string/preference_theme_system_default</item>
