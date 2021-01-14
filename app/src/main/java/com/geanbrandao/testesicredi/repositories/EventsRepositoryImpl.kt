@@ -15,7 +15,9 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class EventsRepositoryImpl(val api: ApiService): EventsRepository {
+class EventsRepositoryImpl(
+    private val api: ApiService
+): EventsRepository {
     override fun getEvents(context: Context): Single<ArrayList<Event>> {
         return api.getEvents()
             .subscribeOn(Schedulers.io())

@@ -36,10 +36,6 @@ import java.net.UnknownHostException
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun Activity.goToActivity(activityClass: Class<*>) {
-    startActivity(Intent(this, activityClass))
-}
-
 fun Long.convertoToDateString(): String {
     val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
     sdf.timeZone = TimeZone.getTimeZone("UTC+3")

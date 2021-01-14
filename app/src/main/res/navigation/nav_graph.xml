@@ -45,6 +45,7 @@
                 android:defaultValue="@null" />
 
         </action>
+
         <action
             android:id="@+id/action_eventsFragment_to_preferencesFragment"
             app:destination="@id/preferencesFragment" />

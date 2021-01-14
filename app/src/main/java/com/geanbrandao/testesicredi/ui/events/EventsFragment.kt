@@ -63,7 +63,8 @@ class EventsFragment : Fragment() {
         getEvents()
 
         binding.swipeRefresh.setOnRefreshListener {
-            binding.swipeRefresh.isRefreshing = false
+
+            getEvents()
         }
 
         binding.imageConfig.setOnClickListener {
@@ -80,12 +81,13 @@ class EventsFragment : Fragment() {
     private fun getEvents() {
         disposable = viewModel.getEvents(requireContext()).subscribeBy(
             onError = {
+                binding.swipeRefresh.isRefreshing = false
                 Timber.e(it)
                 globalExceptionHandle(it)
-
             },
             onSuccess = {
                 // fill the adapter
+                binding.swipeRefresh.isRefreshing = false
                 adapter.addAll(it)
             }
         )

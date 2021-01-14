@@ -192,7 +192,6 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_button_gradient"
                     android:drawableStart="@drawable/ic_share"
                     android:drawablePadding="8dp"
                     android:fontFamily="sans-serif-medium"

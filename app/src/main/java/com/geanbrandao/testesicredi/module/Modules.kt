@@ -22,12 +22,15 @@ val repositoryModule = module {
 }
 
 val adapterModule = module {
+    // aqui nao foi passado o get, pois iria passar o 'applicationContext' para o adapter.
+    // e com esse contexto o adapter nao funciona
+    // como solucao foi passado um contexto via parametro, que eh injetado quando a classe eh declarada dentro da activity/fragment
     factory { (context: Context, onClick: (event: Event) -> Unit) ->
         EventsAdapter(context = context, onClick = onClick)
     }
 }
 val networkModule = module {
-    single<ApiService> {
+    single {
         RetrofitInitializer(get()).createService()
     }
 }

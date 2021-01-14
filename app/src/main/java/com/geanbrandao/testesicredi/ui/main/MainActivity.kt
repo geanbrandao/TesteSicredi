@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val theme = prefs.getString(getString(R.string.preference_theme_key), "auto")
-        showToast("theme eh - $theme")
+//        showToast("theme eh - $theme")
         when (theme) {
             "auto" -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)

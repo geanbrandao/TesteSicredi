@@ -32,7 +32,7 @@ class EventsAdapter(
 
     override fun getItemCount() = data.count()
 
-    fun addAll(data: ArrayList<Event>) {
+    fun  addAll(data: ArrayList<Event>) {
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
